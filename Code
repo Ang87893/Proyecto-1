@@ -1,0 +1,101 @@
+import random
+import re
+persona = {}
+
+def generar_dni():
+    letras = "TRWAGMYFPDXBNJZSQVHLCKE"
+
+    numero = random.randint(0, 99999999)
+    letra = letras[numero % 23]
+    
+    dni = f"{numero:08d}{letra}"
+
+    return dni
+
+def insertarRegistro():
+    bucle = True
+    while(bucle):
+        try:
+            nombre = input("Introduce el nombre: ").strip()
+            if (not re.match(r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$', nombre)):
+                raise ValueError("Error: Solo se admiten nombres reales (letras y espacios).")
+            if (any(nombre.lower() == n.lower() for n in persona.values())):
+                raise ValueError("Error: Ese nombre ya está registrado.")
+
+            dni = generar_dni()
+            persona[dni] = nombre
+            print(f"Registro guardado: Nombre: {nombre} | DNI: {dni}")
+            bucle = False
+            return persona
+
+        except ValueError as e:
+            print(e)
+            continue
+
+def buscarPersona():
+    bucle = True
+    while(bucle):
+        num = int(input("Buscar por DNI (1) o nombre (2)"))
+        try:
+            if(num == 1):
+                try:
+                    dni_buscado = input("Escribe el DNI: ").strip().upper()
+                    if dni_buscado in persona:
+                        print(f"Encontrado -> DNI: {dni_buscado} | Nombre: {persona[dni_buscado]}")
+                        bucle = False
+                except ValueError:
+                    print("Error: No existe esta persona")
+            elif(num == 2):
+                try:
+                    nombre_buscado = input("Escribe el Nombre: ").strip.lower()
+                    for dni, nombre in persona.items():
+                        if nombre.lower == nombre_buscado:
+                            print(f"Encontrado -> DNI: {dni_buscado} | Nombre: {persona[dni_buscado]}")
+                
+                except ValueError:
+                    print("Error: No existe esta persona")
+            else:
+                raise ValueError
+
+        except ValueError:
+            print("Error:elige una de las opciones que hay")
+
+def modificarPersona():
+    bucle = True
+    num = int(input(""))
+    while(bucle):
+        try:
+            if(num == 1):
+                clave = input("")
+                if 
+            elif(num == 2):
+                del
+            else:
+                raise ValueError
+            
+        except ValueError:
+
+
+def eliminarPersona():
+    bucle = True
+    while(bucle):
+        
+
+def mostrarTodo():
+    
+    
+
+opcion = int(input("¿Que desea hacer?"))
+match opcion:
+    case 1:
+        print("Inserta una persona")
+        insertarRegistro()
+    case 2:
+        print("escribe el DNI para encontrar a la persona que buscas") 
+        buscarPersona()
+    case 3:
+        modificarPersona()
+    case 4:
+        eliminarPersona()
+    case 5:
+        mostrarTodo()
