@@ -90,22 +90,26 @@ def eliminarPersona():
 def mostrarTodo():
     for dni, nombre in persona.items():
         f"Nombre: {nombre} | DNI: {dni}"
-    
 
-opcion = int(input("¿Que desea hacer?, Escoja una de las siguientes opciones: 1.Insertar(1), 2.Buscar(2), 3.Modificar(3), 4.Eliminar(4), Mostrar Todo(5)"))
-match opcion:
-    case 1:
-        print("Inserta una persona")
-        insertarRegistro()
-    case 2:
-        print("Buscar una persona") 
-        buscarPersona()
-    case 3:
-        print("Modificar una Persona")
-        modificarPersona()
-    case 4:
-        print("Eliminar una Persona")
-        eliminarPersona()
-    case 5:
-        print("Mostrar lista completa de personas")
-        mostrarTodo()
+bucle = True
+while bucle:
+    opcion = int(input("¿Que desea hacer?, Escoja una de las siguientes opciones: 1.Insertar(1), 2.Buscar(2), 3.Modificar(3), 4.Eliminar(4), 5.Mostrar Todo(5), 6.Finalizar(6)"))
+    match opcion:
+        case 1:
+            print("Inserta una persona")
+            insertarRegistro()
+        case 2:
+            print("Buscar una persona") 
+            buscarPersona()
+        case 3:
+            print("Modificar una Persona")
+            modificarPersona()
+        case 4:
+            print("Eliminar una Persona")
+            eliminarPersona()
+        case 5:
+            print("Mostrar lista completa de personas")
+            mostrarTodo()
+        case 6:
+            print("Finalizando el programa")
+            bucle = False
