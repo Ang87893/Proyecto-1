@@ -34,24 +34,31 @@ def insertarRegistro():
 
 def buscarPersona():
     bucle = True
-    while(bucle):
-        num = int(input("Buscar por DNI (1) o nombre (2)"))
+    while(bucle):   
         try:
+            num = int(input("Buscar por DNI (1) o nombre (2)"))
             if(num == 1):
                 try:
                     dni_buscado = input("Escribe el DNI: ").strip().upper()
                     if dni_buscado in persona:
                         print(f"Encontrado -> DNI: {dni_buscado} | Nombre: {persona[dni_buscado]}")
                         bucle = False
+                    else:
+                        raise ValueError
                 except ValueError:
                     print("Error: No existe esta persona")
             elif(num == 2):
                 try:
-                    nombre_buscado = input("Escribe el Nombre: ").strip.lower()
+                    nombre_buscado = input("Escribe el Nombre: ").strip().lower()
+                    encontrado = False
                     for dni, nombre in persona.items():
-                        if nombre.lower == nombre_buscado:
-                            print(f"Encontrado -> DNI: {dni_buscado} | Nombre: {persona[dni_buscado]}")
-                
+                        if nombre.lower() == nombre_buscado:
+                            print(f"Encontrado -> DNI: {dni} | Nombre: {persona[dni]}")
+                            encontrado = True
+                            bucle = False
+
+                        if not encontrado:
+                            raise ValueError
                 except ValueError:
                     print("Error: No existe esta persona")
             else:
@@ -59,6 +66,7 @@ def buscarPersona():
 
         except ValueError:
             print("Error:elige una de las opciones validas")
+            continue
 
 def modificarPersona():
     bucle = True
@@ -69,18 +77,22 @@ def modificarPersona():
 
 def eliminarPersona():
     bucle = True
-    num = int(input("Eliminar por DNI (1) o nombre (2)"))
     while(bucle):
         try:
+            num = int(input("Eliminar por DNI (1) o nombre (2)"))
             if(num == 1):
                 dni_buscado = input("Escribe el DNI: ").strip().upper()
                 if dni_buscado in persona:
                     del persona[dni_buscado]
+                    print("Persona eliminada")
+                    bucle = False
             elif(num == 2):
-                nombre_buscado = input("Escribe el Nombre: ").strip.lower()
+                nombre_buscado = input("Escribe el Nombre: ").strip().lower()
                 for dni, nombre in persona.items():
-                    if nombre.lower == nombre_buscado:
-                        del persona[nombre]
+                    if nombre.lower() == nombre_buscado:
+                        del persona[dni]
+                        print("Persona eliminada")
+                        bucle = False
             else:
                 raise ValueError
             
@@ -89,7 +101,7 @@ def eliminarPersona():
 
 def mostrarTodo():
     for dni, nombre in persona.items():
-        f"Nombre: {nombre} | DNI: {dni}"
+        print(f"Nombre: {nombre} | DNI: {dni}")
 
 bucle = True
 while bucle:
