@@ -58,44 +58,54 @@ def buscarPersona():
                 raise ValueError
 
         except ValueError:
-            print("Error:elige una de las opciones que hay")
+            print("Error:elige una de las opciones validas")
 
 def modificarPersona():
     bucle = True
     num = int(input(""))
     while(bucle):
-        try:
-            if(num == 1):
-                clave = input("")
-                if 
-            elif(num == 2):
-                del
-            else:
-                raise ValueError
-            
-        except ValueError:
+        
 
 
 def eliminarPersona():
     bucle = True
+    num = int(input("Eliminar por DNI (1) o nombre (2)"))
     while(bucle):
-        
+        try:
+            if(num == 1):
+                dni_buscado = input("Escribe el DNI: ").strip().upper()
+                if dni_buscado in persona:
+                    del persona[dni_buscado]
+            elif(num == 2):
+                nombre_buscado = input("Escribe el Nombre: ").strip.lower()
+                for dni, nombre in persona.items():
+                    if nombre.lower == nombre_buscado:
+                        del persona[nombre]
+            else:
+                raise ValueError
+            
+        except ValueError:
+            print("Error:elige una de las opciones validas")
 
 def mostrarTodo():
-    
+    for dni, nombre in persona.items():
+        f"Nombre: {nombre} | DNI: {dni}"
     
 
-opcion = int(input("¿Que desea hacer?"))
+opcion = int(input("¿Que desea hacer?, Escoja una de las siguientes opciones: 1.Insertar(1), 2.Buscar(2), 3.Modificar(3), 4.Eliminar(4), Mostrar Todo(5)"))
 match opcion:
     case 1:
         print("Inserta una persona")
         insertarRegistro()
     case 2:
-        print("escribe el DNI para encontrar a la persona que buscas") 
+        print("Buscar una persona") 
         buscarPersona()
     case 3:
+        print("Modificar una Persona")
         modificarPersona()
     case 4:
+        print("Eliminar una Persona")
         eliminarPersona()
     case 5:
+        print("Mostrar lista completa de personas")
         mostrarTodo()
